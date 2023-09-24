@@ -20,3 +20,6 @@ A classe modelo consistirá nas propriedades de `id`, `filme`, `sala` e `data_ho
 
 ### Gerencimento de ingresso
 A classe modelo consistirá nas propridades de `id`, `cliente` e `exibição`. Será permitido o cadastramento e a listagem de ingressos.
+
+![Diagrama de classe](./img/Cinema-CD.png)
+![Modelagem do banco](./img/Cinema-DB.png)
