@@ -3635,19 +3635,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Patrick Sant'Anna\\.nuget\\packages\\": {}
+    "/home/admin/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Patrick Sant'Anna\\Desktop\\awesome-cinema\\AwesomeCinema\\AwesomeCinema.csproj",
+      "projectUniqueName": "/home/admin/dev/faculdade/API_Cinema/awesome-cinema/AwesomeCinema/AwesomeCinema.csproj",
       "projectName": "AwesomeCinema",
-      "projectPath": "c:\\Users\\Patrick Sant'Anna\\Desktop\\awesome-cinema\\AwesomeCinema\\AwesomeCinema.csproj",
-      "packagesPath": "C:\\Users\\Patrick Sant'Anna\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Patrick Sant'Anna\\Desktop\\awesome-cinema\\AwesomeCinema\\obj\\",
+      "projectPath": "/home/admin/dev/faculdade/API_Cinema/awesome-cinema/AwesomeCinema/AwesomeCinema.csproj",
+      "packagesPath": "/home/admin/.nuget/packages/",
+      "outputPath": "/home/admin/dev/faculdade/API_Cinema/awesome-cinema/AwesomeCinema/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Patrick Sant'Anna\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/admin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -3713,7 +3713,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/admin/dotnet/sdk/6.0.412/RuntimeIdentifierGraph.json"
       }
     }
   }
