@@ -1,7 +1,8 @@
+using AwesomeCinema.Data;
+using AwesomeCinema.Models;
 using Microsoft.AspNetCore.Mvc;
-using FilmesApi.Models;
-using API.Data;
-namespace FilmesApi.Controllers;
+
+namespace AwesomeCinema.Controllers;
 
 [ApiController]
 [Route("api/filme")]

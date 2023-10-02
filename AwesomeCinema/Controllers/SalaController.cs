@@ -1,10 +1,7 @@
-using System.Diagnostics.Metrics;
-using System.Net;
-using FilmesApi.Models;
+using AwesomeCinema.Models;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace FilmesApi.Controllers;
+namespace AwesomeCinema.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

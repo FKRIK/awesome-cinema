@@ -1,4 +1,4 @@
-namespace FilmesApi.Models;
+namespace AwesomeCinema.Models;
 public class Sala
 {
     public int Id { get; set;} = 0;

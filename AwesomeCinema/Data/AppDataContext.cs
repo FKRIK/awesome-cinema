@@ -1,6 +1,7 @@
+using AwesomeCinema.Models;
 using Microsoft.EntityFrameworkCore;
-using FilmesApi.Models;
-namespace API.Data;
+
+namespace AwesomeCinema.Data;
 public class AppDataContext : DbContext
 {
     public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
@@ -10,5 +11,6 @@ public class AppDataContext : DbContext
 
     //Classes que vão se tornar tabelas no banco de dados
     public DbSet<Filme> Filmes { get; set; }
+    public DbSet<Sala> Salas { get; set; }
 
 }
