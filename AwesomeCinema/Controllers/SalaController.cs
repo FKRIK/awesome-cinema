@@ -9,8 +9,10 @@ namespace AwesomeCinema.Controllers;
 public class SalaController : ControllerBase
 {
     private readonly AppDataContext _context;
-    //private static List<Sala> salas = new List<Sala>();
-    //public static int Incremento = 0;
+    public SalaController(AppDataContext context)
+    {
+        _context = context;
+    }
 
     [HttpPost]
     [Route("cadastrar")]
@@ -18,7 +20,7 @@ public class SalaController : ControllerBase
     {   
         try
         {
-            _context.Add(sala);
+            _context.Salas.Add(sala);
             _context.SaveChanges();
             return Created("", sala);
         }
@@ -88,7 +90,10 @@ public class SalaController : ControllerBase
         }
     }
 
-    [HttpPatch]
+    //TODO:
+    //Arrumar isto aqui. Está alterando o objeto e criando um novo.
+    //Deve somente alterar.
+    [HttpPut]
     [Route("alterar/{id}")]
     public IActionResult AlterarDisponibilidade([FromRoute] int id, [FromBody] Sala salaCadastrada)
     {

@@ -49,7 +49,7 @@ public class FilmeController : ControllerBase
     // }
 
     [HttpGet]
-    [Route("listar/{anolancamento:string}")]
+    [Route("listar/{anolancamento}")]
     public List<Filme> ListarAnoLancamento([FromRoute] string anolancamento)
     {
         List<Filme> filmeFiltrado = new List<Filme>();
