@@ -1,7 +1,7 @@
-namespace FilmesApi.Models;
+namespace AwesomeCinema.Models;
 public class Sala
 {
-    public int Id { get; set;} = 0;
+    public int SalaId { get; set;}
     public int Assentos { get; set;}
     public bool Disponivel { get; set;}
     public DateTime CriadoEm { get; set;}

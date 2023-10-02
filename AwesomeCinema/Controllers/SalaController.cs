@@ -1,87 +1,139 @@
-using System.Diagnostics.Metrics;
-using System.Net;
-using FilmesApi.Models;
+using AwesomeCinema.Data;
+using AwesomeCinema.Models;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace FilmesApi.Controllers;
+namespace AwesomeCinema.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class SalaController : ControllerBase
 {
-    private static List<Sala> salas = new List<Sala>();
-    public static int Incremento = 0;
+    private readonly AppDataContext _context;
+    public SalaController(AppDataContext context)
+    {
+        _context = context;
+    }
 
     [HttpPost]
     [Route("cadastrar")]
-    public void Cadastrar([FromBody]Sala sala)
+    public IActionResult Cadastrar([FromBody]Sala sala)
     {   
-        sala.Id = Incremento++;
-        salas.Add(sala);
+        try
+        {
+            _context.Salas.Add(sala);
+            _context.SaveChanges();
+            return Created("", sala);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
     }
 
     [HttpGet]
     [Route("listar")]
-    public List<Sala> Listar()
+    public IActionResult Listar()
     {
-        return salas;
+        try
+        {
+            List<Sala> salas = _context.Salas.ToList();
+            return Ok(salas);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]
     [Route("listar/{isDisponivel}")]
-    public List<Sala> ListarPorDisponibilidade([FromRoute] bool isDisponivel)
+    public IActionResult ListarPorDisponibilidade([FromRoute] bool isDisponivel)
     {
-        List<Sala> salasFiltradas = new List<Sala>();
-
-        foreach(Sala salaCadastrada in salas)
+        try
         {
-            if(salaCadastrada.Disponivel == isDisponivel)
+            List<Sala> salasFiltradas = new List<Sala>();
+            foreach(Sala salaCadastrada in _context.Salas.ToList())
             {
-                salasFiltradas.Add(salaCadastrada);
+                if(salaCadastrada.Disponivel == isDisponivel)
+                {
+                    salasFiltradas.Add(salaCadastrada);
+                }
             }
+            return Ok(salasFiltradas);
         }
-        
-        return salasFiltradas;
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]
     [Route("listar/{assentos:int}")]
-    public List<Sala> ListarPorAssento([FromRoute] int assentos)
+    public IActionResult ListarPorAssento([FromRoute] int assentos)
     {
-        List<Sala> salasFiltradas = new List<Sala>();
-
-        foreach(Sala salaCadastrada in salas)
+        try
         {
-            if(salaCadastrada.Assentos >= assentos)
+            List<Sala> salasFiltradas = new List<Sala>();
+            foreach(Sala salaCadastrada in _context.Salas.ToList())
             {
-                salasFiltradas.Add(salaCadastrada);
+                if(salaCadastrada.Assentos >= assentos)
+                {
+                    salasFiltradas.Add(salaCadastrada);
+                }
             }
+            return Ok(salasFiltradas);
         }
-
-        return salasFiltradas;
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
-    [HttpPatch]
+    //TODO:
+    //Arrumar isto aqui. Está alterando o objeto e criando um novo.
+    //Deve somente alterar.
+    [HttpPut]
     [Route("alterar/{id}")]
-    public void AlterarDisponibilidade([FromRoute] int id)
+    public IActionResult AlterarDisponibilidade([FromRoute] int id, [FromBody] Sala salaCadastrada)
     {
-        Sala salaDesejada = salas.FirstOrDefault(x => x.Id == id);
-
-        if(salaDesejada.Disponivel == true)
+        try
         {
-            salaDesejada.Disponivel = false;
-        }
+            Sala salaDesejada = _context.Salas.FirstOrDefault(x => x.SalaId == id);
 
-        salaDesejada.Disponivel = true;
+            if(salaDesejada.Disponivel == true)
+            {
+                salaDesejada.Disponivel = false;
+            }
+            else
+            {
+                salaDesejada.Disponivel = true;
+            }
+            _context.Salas.Update(salaCadastrada);
+            _context.SaveChanges();
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpDelete]
     [Route("deletar/{id}")]
-    public void RemoverSala([FromRoute] int id)
+    public IActionResult RemoverSala([FromRoute] int id)
     {
-        Sala salasCadastrada = salas.Find(x => x.Id == id);
+        try
+        {
+            Sala salasCadastrada = _context.Salas.Find(id);
 
-        salas.Remove(salasCadastrada);
+            _context.Salas.Remove(salasCadastrada);
+            _context.SaveChanges();
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

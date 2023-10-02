@@ -1,7 +1,8 @@
+using AwesomeCinema.Data;
+using AwesomeCinema.Models;
 using Microsoft.AspNetCore.Mvc;
-using FilmesApi.Models;
-using API.Data;
-namespace FilmesApi.Controllers;
+
+namespace AwesomeCinema.Controllers;
 
 [ApiController]
 [Route("api/filme")]
@@ -20,7 +21,7 @@ public class FilmeController : ControllerBase
     [Route("cadastrar")]
     public void CadastrarFilme([FromBody] Filme filme)
     {
-        filme.Id = id++;
+        filme.FilmeId = id++;
         filmes.Add(filme);
     }
 
@@ -48,7 +49,7 @@ public class FilmeController : ControllerBase
     // }
 
     [HttpGet]
-    [Route("listar/{anolancamento:string}")]
+    [Route("listar/{anolancamento}")]
     public List<Filme> ListarAnoLancamento([FromRoute] string anolancamento)
     {
         List<Filme> filmeFiltrado = new List<Filme>();
