@@ -14,7 +14,7 @@ public class SalaController : ControllerBase
     [Route("cadastrar")]
     public void Cadastrar([FromBody]Sala sala)
     {   
-        sala.Id = Incremento++;
+        sala.SalaId = Incremento++;
         salas.Add(sala);
     }
 
@@ -63,7 +63,7 @@ public class SalaController : ControllerBase
     [Route("alterar/{id}")]
     public void AlterarDisponibilidade([FromRoute] int id)
     {
-        Sala salaDesejada = salas.FirstOrDefault(x => x.Id == id);
+        Sala salaDesejada = salas.FirstOrDefault(x => x.SalaId == id);
 
         if(salaDesejada.Disponivel == true)
         {
@@ -77,7 +77,7 @@ public class SalaController : ControllerBase
     [Route("deletar/{id}")]
     public void RemoverSala([FromRoute] int id)
     {
-        Sala salasCadastrada = salas.Find(x => x.Id == id);
+        Sala salasCadastrada = salas.Find(x => x.SalaId == id);
 
         salas.Remove(salasCadastrada);
     }

@@ -21,7 +21,7 @@ public class FilmeController : ControllerBase
     [Route("cadastrar")]
     public void CadastrarFilme([FromBody] Filme filme)
     {
-        filme.Id = id++;
+        filme.FilmeId = id++;
         filmes.Add(filme);
     }
 
