@@ -33,36 +33,79 @@ public class FilmeController : ControllerBase
         
     }
 
-    // [HttpGet]
-    // [Route("listar/{emcartaz:bool}")]
-    // public IActionResult ListarEmCartaz()
-    // {
-    //     try
-    //     {
-    //         List<Filme> filmes = _ctx.Filmes.ToList();
-    //         return filmes. != false ? Ok (filmes) : Notfound();
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         return BadRequest(e.Message);
-    //     }
-    // }
-
     [HttpGet]
-    [Route("listar/{anolancamento}")]
-    public List<Filme> ListarAnoLancamento([FromRoute] string anolancamento)
-    {
-        List<Filme> filmeFiltrado = new List<Filme>();
+    [Route("listar/emcartaz/{emcartaz}")]
 
+    public List<Filme> ListarEmCartaz([FromRoute] bool emcartaz)
+    {
+        List<Filme> filmesFiltrados = new List<Filme>();
         foreach(Filme filmeCadastrado in filmes)
         {
-            if(filmeCadastrado.EmCartaz != false)
+            if(filmeCadastrado.EmCartaz == emcartaz)
             {
-                filmeFiltrado.Add(filmeCadastrado);
+                filmesFiltrados.Add(filmeCadastrado);
             }
         }
+        return filmesFiltrados;
 
-        return filmeFiltrado;
     }
 
+    [HttpGet]
+    [Route("listar/anolancamento/{anolancamento}")]
+    public List<Filme> ListarPorAno([FromRoute] string anolancamento)
+    {            
+            List<Filme> filmesFiltrados = new List<Filme>();
+            foreach(Filme filmeCadastrado in filmes )
+            {
+                if(filmeCadastrado.AnoLancamento == anolancamento)
+                {
+                    filmesFiltrados.Add(filmeCadastrado);
+                }
+            }
+            return filmesFiltrados;             
+    }
+
+    [HttpGet]
+    [Route("listar/avaliacao/{avaliacao:float}")]
+    public List<Filme> ListarPorAvaliacao([FromRoute] float avaliacao)
+    {            
+            List<Filme> filmesFiltrados = new List<Filme>();
+            foreach(Filme filmeCadastrado in filmes )
+            {
+                if(filmeCadastrado.Avaliacao >= avaliacao)
+                {
+                    filmesFiltrados.Add(filmeCadastrado);
+                }
+            }
+            return filmesFiltrados;             
+    }
+    
+    [HttpPatch]
+    [Route("alterar/{id}")]
+    public void AlterarAvaliacao([FromRoute] int id, Filme filme)
+    {
+        Filme filmeDesejado = filmes.FirstOrDefault(alt => alt.FilmeId == id);
+
+        filmeDesejado.Avaliacao = filme.Avaliacao;
+    }
+
+    [HttpPatch]
+    [Route("remover/{id}")]
+    public void RemoverDeCartaz([FromRoute] int id, Filme filme)
+    {
+        Filme filmeDesejado = filmes.FirstOrDefault(alt => alt.FilmeId == id);
+
+        filmeDesejado.EmCartaz = filme.EmCartaz;                     
+    } 
+
+    [HttpDelete]
+    [Route("deletar/{id}")]
+    public void DeletarFilme([FromRoute] int id)
+    {
+        Filme filmeDesejado = filmes.FirstOrDefault(alt => alt.FilmeId == id);
+
+        filmes.Remove(filmeDesejado);                          
+    } 
 }
+    
+
