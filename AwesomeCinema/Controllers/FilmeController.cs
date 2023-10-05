@@ -19,92 +19,160 @@ public class FilmeController : ControllerBase
 
     [HttpPost]
     [Route("cadastrar")]
-    public void CadastrarFilme([FromBody] Filme filme)
+    public IActionResult CadastrarFilme([FromBody] Filme filme)
     {
-        filme.FilmeId = id++;
-        filmes.Add(filme);
+        try
+        {
+            _ctx.Filmes.Add(filme);
+            _ctx.SaveChanges();
+            return Created("", filme);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+
     }
 
     [HttpGet]
     [Route("listar")]
-    public List<Filme> ListarFilme()
+    public IActionResult ListarFilme()
     {
-        return filmes;
+        try
+        {
+            List<Filme> filmes = _ctx.Filmes.ToList();
+            return Ok(filmes);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        
         
     }
 
     [HttpGet]
     [Route("listar/emcartaz/{emcartaz}")]
-
-    public List<Filme> ListarEmCartaz([FromRoute] bool emcartaz)
+    public IActionResult ListarEmCartaz([FromRoute] bool emcartaz)
     {
-        List<Filme> filmesFiltrados = new List<Filme>();
-        foreach(Filme filmeCadastrado in filmes)
+        try
         {
-            if(filmeCadastrado.EmCartaz == emcartaz)
+            List<Filme> filmesFiltrados = new List<Filme>();
+            foreach(Filme filmeCadastrado in _ctx.Filmes.ToList())
             {
-                filmesFiltrados.Add(filmeCadastrado);
+                if(filmeCadastrado.EmCartaz == emcartaz)
+                {
+                    filmesFiltrados.Add(filmeCadastrado);
+                }
             }
-        }
-        return filmesFiltrados;
+        return Ok(filmesFiltrados);
 
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }      
     }
 
     [HttpGet]
     [Route("listar/anolancamento/{anolancamento}")]
-    public List<Filme> ListarPorAno([FromRoute] string anolancamento)
-    {            
+    public IActionResult ListarPorAno([FromRoute] string anolancamento)
+    {        
+        try
+        {    
             List<Filme> filmesFiltrados = new List<Filme>();
-            foreach(Filme filmeCadastrado in filmes )
+            foreach(Filme filmeCadastrado in _ctx.Filmes.ToList())
             {
                 if(filmeCadastrado.AnoLancamento == anolancamento)
                 {
                     filmesFiltrados.Add(filmeCadastrado);
                 }
             }
-            return filmesFiltrados;             
+            return Ok(filmesFiltrados);             
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }      
     }
 
     [HttpGet]
     [Route("listar/avaliacao/{avaliacao:float}")]
-    public List<Filme> ListarPorAvaliacao([FromRoute] float avaliacao)
-    {            
+    public IActionResult ListarPorAvaliacao([FromRoute] float avaliacao)
+    {   
+        try
+        {      
             List<Filme> filmesFiltrados = new List<Filme>();
-            foreach(Filme filmeCadastrado in filmes )
+            foreach(Filme filmeCadastrado in _ctx.Filmes.ToList())
             {
                 if(filmeCadastrado.Avaliacao >= avaliacao)
                 {
                     filmesFiltrados.Add(filmeCadastrado);
                 }
             }
-            return filmesFiltrados;             
+            return Ok(filmesFiltrados);    
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }       
     }
     
     [HttpPatch]
     [Route("alterar/{id}")]
-    public void AlterarAvaliacao([FromRoute] int id, Filme filme)
+    public IActionResult AlterarAvaliacao([FromRoute] int id, Filme filme)
     {
-        Filme filmeDesejado = filmes.FirstOrDefault(alt => alt.FilmeId == id);
+        try
+        {
+            Filme filmeDesejado = _ctx.Filmes.FirstOrDefault(alt => alt.FilmeId == id);
 
-        filmeDesejado.Avaliacao = filme.Avaliacao;
+            filmeDesejado.Avaliacao = filme.Avaliacao;
+            _ctx.SaveChanges();
+            return Ok(filmeDesejado);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }   
     }
+
 
     [HttpPatch]
     [Route("remover/{id}")]
-    public void RemoverDeCartaz([FromRoute] int id, Filme filme)
+    public IActionResult RemoverDeCartaz([FromRoute] int id, Filme filme)
     {
-        Filme filmeDesejado = filmes.FirstOrDefault(alt => alt.FilmeId == id);
+        try
+        {
+            Filme filmeDesejado = _ctx.Filmes.FirstOrDefault(alt => alt.FilmeId == id);
 
-        filmeDesejado.EmCartaz = filme.EmCartaz;                     
+            filmeDesejado.EmCartaz = filme.EmCartaz;      
+            _ctx.SaveChanges();
+            return Ok(filmeDesejado);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }       
     } 
 
     [HttpDelete]
     [Route("deletar/{id}")]
-    public void DeletarFilme([FromRoute] int id)
+    public IActionResult DeletarFilme([FromRoute] int id)
     {
-        Filme filmeDesejado = filmes.FirstOrDefault(alt => alt.FilmeId == id);
+        try
+        {
+            Filme filmeDesejado = _ctx.Filmes.FirstOrDefault(alt => alt.FilmeId == id);
+       
+            _ctx.Filmes.Remove(filmeDesejado);
+            _ctx.SaveChanges();
 
-        filmes.Remove(filmeDesejado);                          
+            return Ok();
+
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }                           
     } 
 }
     
