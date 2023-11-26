@@ -11,6 +11,7 @@ public class Filme
 
     public Filme()
     {
+        EmCartaz = true;
         CriadoEm = DateTime.Now;
     }
 }

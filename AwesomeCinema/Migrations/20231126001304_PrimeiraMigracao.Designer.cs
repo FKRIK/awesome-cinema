@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AwesomeCinema.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20231002182027_PrimeiraMigracao")]
+    [Migration("20231126001304_PrimeiraMigracao")]
     partial class PrimeiraMigracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

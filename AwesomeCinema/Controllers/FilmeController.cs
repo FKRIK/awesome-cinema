@@ -15,15 +15,14 @@ public class FilmeController : ControllerBase
         _ctx = ctx;
     }
     private static List<Filme> filmes = new List<Filme>();
-    public static int id = 0;
-
+   
     [HttpPost]
     [Route("cadastrar")]
     public IActionResult CadastrarFilme([FromBody] Filme filme)
     {
         try
-        {
-            _ctx.Filmes.Add(filme);
+        {      
+                        _ctx.Filmes.Add(filme);
             _ctx.SaveChanges();
             return Created("", filme);
         }
