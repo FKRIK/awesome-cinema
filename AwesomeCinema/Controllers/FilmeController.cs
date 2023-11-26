@@ -14,7 +14,6 @@ public class FilmeController : ControllerBase
     {
         _ctx = ctx;
     }
-    private static List<Filme> filmes = new List<Filme>();
    
     [HttpPost]
     [Route("cadastrar")]
@@ -22,7 +21,7 @@ public class FilmeController : ControllerBase
     {
         try
         {      
-                        _ctx.Filmes.Add(filme);
+            _ctx.Filmes.Add(filme);
             _ctx.SaveChanges();
             return Created("", filme);
         }

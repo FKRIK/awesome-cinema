@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", "sans-serif";
+}
+
+h1{
+    text-align: center;
+    padding: 2.5rem;
+}
+
+h2{
+    padding-bottom: 1rem;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+label{
+    display: block;
+    padding: 16px 0 4px 0;
+}
+
+td{
+    padding: 8px 28px;
+    text-align: center;
+}
+
+button{
+    padding: 4px 8px;
+    margin-top: 16px;
+}
+
+.container{
+    margin: 1rem;
+}
+
+.content{
+    display: flex;
+    justify-content: space-around;
+}

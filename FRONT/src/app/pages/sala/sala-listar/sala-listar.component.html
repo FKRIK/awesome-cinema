@@ -1,23 +1,22 @@
-<h2>Listagem das salas</h2>
-
-<div>
-    <table>
-        <thead>
-            <tr>
-                <td>#</td>
-                <td>N° de assentos</td>
-                <td>Disponível?</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let sala of salasCadastradas">
-                <td> {{ sala.salaId }} </td>
-                <td> {{ sala.assentos }} </td>
-                <td> {{ sala.disponivel }} </td>
-            </tr>
-        </tbody>
-    </table>
-
-
+<div class="content">
     <app-sala-cadastrar (elementoCadastrado)="atualizaSalas($event)"></app-sala-cadastrar>
+    <div>
+        <h2>Listagem das salas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>N° de assentos</td>
+                    <td>Disponível?</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sala of salasCadastradas">
+                    <td> {{ sala.salaId }} </td>
+                    <td> {{ sala.assentos }} </td>
+                    <td> {{ sala.disponivel }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

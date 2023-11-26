@@ -9,12 +9,11 @@ import { HttpClient } from "@angular/common/http";
 })
 export class FilmeListarComponent {
   filmesCadastrados!: Filme[];
+  byYear: number = 0;
 
   constructor(private client: HttpClient) {}
 
   ngOnInit(): void {
-    // console.log("O componente foi carregado!");
-
     this.client
       .get<Filme[]>("https://localhost:7206/api/filme/listar")
       .subscribe({
@@ -30,5 +29,19 @@ export class FilmeListarComponent {
 
   atualizaFilmes(dados: Filme){
     this.filmesCadastrados.push(dados);
+  }
+
+  filtraFilmes(): void{
+    // console.log("filtra");
+    this.client
+      .get<Filme[]>(`https://localhost:7206/api/filme/listar/anolancamento/${this.byYear}`)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
   }
 }

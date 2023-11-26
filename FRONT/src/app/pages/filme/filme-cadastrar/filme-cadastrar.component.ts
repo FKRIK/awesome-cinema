@@ -28,6 +28,7 @@ export class FilmeCadastrarComponent {
       .post<Filme>("https://localhost:7206/api/filme/cadastrar", filme)
       .subscribe({
         next: (data) => {
+          console.log("Filme enviado");
           console.table(data);
           this.elementoCadastrado.emit(data);
           //TO-DO: add field cleaner
