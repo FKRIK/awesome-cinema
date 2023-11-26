@@ -1,0 +1,10 @@
+<h2>Cadastro de salas</h2>
+
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="title">Número de assentos</label>
+        <input type="number" name="title" id="title" [(ngModel)]="assentos">
+    </div>
+
+    <button type="submit" id="btn-salvar">Salvar</button>
+</form>

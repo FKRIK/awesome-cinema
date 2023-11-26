@@ -1,0 +1,25 @@
+<h2>Cadastro de filmes</h2>
+
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text" name="title" id="title" [(ngModel)]="titulo">
+    </div>
+
+    <div class="form-group">
+        <label for="year">Ano de lançamento</label>
+        <input type="text" name="year" id="year" [(ngModel)]="ano">
+    </div>
+
+    <div class="form-group">
+        <label for="minutes">Duração (min)</label>
+        <input type="text" name="minutes" id="minutes" [(ngModel)]="minutos">
+    </div>
+
+    <div class="form-group">
+        <label for="score">Avaliação</label>
+        <input type="text" name="score" id="score" [(ngModel)]="nota">
+    </div>
+
+    <button type="submit" id="btn-salvar">Salvar</button>
+</form>

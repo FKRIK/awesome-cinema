@@ -1,0 +1,28 @@
+<h2>Listagem dos filmes</h2>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Título</td>
+                <td>Minutos</td>
+                <td>Data</td>
+                <td>Nota</td>
+                <td>Em exibição</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let film of filmesCadastrados">
+                <td> {{ film.filmeId}} </td>
+                <td> {{ film.titulo}} </td>
+                <td> {{ film.duracao}} </td>
+                <td> {{ film.anoLancamento}} </td>
+                <td> {{ film.avaliacao}} </td>
+                <td> {{ film.emCartaz}} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <app-filme-cadastrar (elementoCadastrado)="atualizaFilmes($event)"></app-filme-cadastrar>
+</div>
