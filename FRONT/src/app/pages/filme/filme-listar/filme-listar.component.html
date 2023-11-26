@@ -2,27 +2,28 @@
     <app-filme-cadastrar (elementoCadastrado)="atualizaFilmes($event)"></app-filme-cadastrar>
     <div>
         <h2>Listagem dos filmes</h2>
-        <form (ngSubmit)="filtraFilmes()">
-            <div class="filter-fieldset">
-                <div class="filter-fields">
-                    <label for="" class="filter-label">Por ano</label>
-                    <input type="text" name="" id="" class="filter-input" [(ngModel)]="byYear">
-                </div>
-                <div class="filter-fields">
-                    <label for="" class="filter-label">Por nota</label>
-                    <input type="text" name="" id="" class="filter-input">
-                </div>
-                <div class="filter-fields">
-                    <label>Em cartaz:</label>
-                    <label for="cartaz-sim" class="escolha-label">Sim</label>
-                    <input type="radio" name="" id="cartaz-sim" class="filter-input">
-                    <label for="cartaz-nao" class="escolha-label">Não</label>
-                    <input type="radio" name="" id="cartaz-nao" class="filter-input">
-                </div>
-
-                <button type="submit">Filtrar</button>
+        <p>Escolha somente um filtro, por gentileza</p>
+        <div class="filter-fieldset">
+            <div class="filter-fields">
+                <label for="" class="filter-label">Por ano</label>
+                <input type="text" name="" id="" class="filter-input" [(ngModel)]="byYear">
             </div>
-        </form>
+            <div class="filter-fields">
+                <label for="" class="filter-label">Por nota</label>
+                <input type="number" name="" id="" class="filter-input" [(ngModel)]="byNota">
+            </div>
+            <div class="filter-fields">
+                <label>Em cartaz:</label>
+                
+                <label for="cartaz-choice" class="escolha-label">Sim</label>
+                <input type="radio" name="aa" value="true" id="cartaz-choice" class="filter-input" [(ngModel)]="byCartaz">
+                
+                <label for="cartaz-choice" class="escolha-label">Não</label>
+                <input type="radio" name="aa" value="false" id="cartaz-choice" class="filter-input" [(ngModel)]="byCartaz">
+            </div>
+
+            <button type="submit" (click)="filtraFilmes()">Filtrar</button>
+        </div>
         <table>
             <thead>
                 <tr>
@@ -32,16 +33,21 @@
                     <td>Data</td>
                     <td>Nota</td>
                     <td>Em exibição</td>
+                    <td>Ação</td>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let film of filmesCadastrados">
                     <td> {{ film.filmeId}} </td>
-                    <td> {{ film.titulo}} </td>
-                    <td> {{ film.duracao}} </td>
-                    <td> {{ film.anoLancamento}} </td>
-                    <td> {{ film.avaliacao}} </td>
-                    <td> {{ film.emCartaz}} </td>
+                    <td> {{ film?.titulo}} </td>
+                    <td> {{ film?.duracao}} </td>
+                    <td> {{ film?.anoLancamento}} </td>
+                    <td> {{ film?.avaliacao}} </td>
+                    <td> {{ film?.emCartaz}} </td>
+                    <td>
+                        <button (click)="alterarFilme(film.filmeId)">Ed</button>
+                        <button (click)="excluirFilme(film.filmeId)">Ex</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

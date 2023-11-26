@@ -2,7 +2,7 @@ export interface Filme{
     filmeId?: number;
     titulo: string;
     duracao: number;
-    anoLancamento: number;
+    anoLancamento: string;
     avaliacao: number;
     emCartaz?: boolean;
 }

@@ -9,6 +9,10 @@ import { SalaCadastrarComponent } from './pages/sala/sala-cadastrar/sala-cadastr
 import { SalaListarComponent } from './pages/sala/sala-listar/sala-listar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { IngressoListarComponent } from './pages/ingresso/ingresso-listar/ingresso-listar.component';
+import { IngressoCadastrarComponent } from './pages/ingresso/ingresso-cadastrar/ingresso-cadastrar.component';
+import { ExibicaoListarComponent } from './pages/exibicao/exibicao-listar/exibicao-listar.component';
+import { ExibicaoCadastrarComponent } from './pages/exibicao/exibicao-cadastrar/exibicao-cadastrar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { FormsModule } from '@angular/forms';
     FilmeCadastrarComponent,
     FilmeListarComponent,
     SalaCadastrarComponent,
-    SalaListarComponent
+    SalaListarComponent,
+    IngressoListarComponent,
+    IngressoCadastrarComponent,
+    ExibicaoListarComponent,
+    ExibicaoCadastrarComponent
   ],
   imports: [
     BrowserModule,

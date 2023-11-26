@@ -15,14 +15,13 @@ public class ExibicaoController : ControllerBase
     {
         _ctx = ctx;
     }
-    private static List<Exibicao> exibicoes = new List<Exibicao>();
    
     [HttpPost]
     [Route("cadastrar")]
     public IActionResult CadastrarExibicao([FromBody] Exibicao exibicao)
     {
         try
-        {      
+        {
            Filme? filme = _ctx.Filmes.Find(exibicao.FilmeId);
            if (filme == null) return NotFound();
           
@@ -40,8 +39,8 @@ public class ExibicaoController : ControllerBase
         {
             return BadRequest(e.Message);
         }
-
     }
+
     [HttpGet]
     [Route("listar")]
     public IActionResult ListarExibicao()
@@ -65,12 +64,12 @@ public class ExibicaoController : ControllerBase
     {
         try
         {
-            Exibicao exibicaoCadastrada = _ctx.Exibicoes.FirstOrDefault(alt => alt.ExibicaoId == id);
+            Exibicao? exibicaoCadastrada = _ctx.Exibicoes.FirstOrDefault(alt => alt.ExibicaoId == id);
             if(exibicaoCadastrada == null) return NotFound();
             exibicaoCadastrada.DataHora = exibicao.DataHora;
             exibicaoCadastrada.FilmeId = exibicao.FilmeId;
             exibicaoCadastrada.SalaId = exibicao.SalaId;
-                        _ctx.SaveChanges();
+            _ctx.SaveChanges();
             return Ok(exibicaoCadastrada);
         }
         catch(Exception e)
@@ -84,7 +83,7 @@ public class ExibicaoController : ControllerBase
     {
         try
         {
-            Exibicao exibicaoCadastrada = _ctx.Exibicoes.FirstOrDefault(alt => alt.FilmeId == id);
+            Exibicao? exibicaoCadastrada = _ctx.Exibicoes.FirstOrDefault(alt => alt.ExibicaoId == id);
        
             _ctx.Exibicoes.Remove(exibicaoCadastrada);
             _ctx.SaveChanges();

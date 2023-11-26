@@ -1,0 +1,29 @@
+<div class="content">
+    <app-exibicao-cadastrar (elementoCadastrado)="atualizaExibicoes($event)"></app-exibicao-cadastrar>
+    <div>
+        <h2>Listagem de exibições</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Horário</td>
+                    <td>Filme</td>
+                    <td>Sala</td>
+                    <td>Ação</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exib of exibicoesCadastradas">
+                    <td> {{ exib.exibicaoId }} </td>
+                    <td> {{ exib.dataHora | date : "dd/MM/yyyy hh:mm:ss"}} </td>
+                    <td> {{ exib.filme?.titulo }} </td>
+                    <td> {{ exib.sala?.salaId }} </td>
+                    <td>
+                        <button (click)="alterarExibicao(exib.exibicaoId)">Ed</button>
+                        <button (click)="excluirExibicao(exib.exibicaoId)">Ex</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

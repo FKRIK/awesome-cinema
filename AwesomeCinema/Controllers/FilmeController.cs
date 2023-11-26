@@ -49,6 +49,24 @@ public class FilmeController : ControllerBase
         
     }
 
+
+    [HttpGet]
+    [Route("listar/{id}")]
+    public IActionResult ListarFilme(int id)
+    {
+        try
+        {
+            Filme? filme = _ctx.Filmes.Find(id);
+            return Ok(filme);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+        
+        
+    }
+
     [HttpGet]
     [Route("listar/emcartaz/{emcartaz}")]
     public IActionResult ListarEmCartaz([FromRoute] bool emcartaz)
@@ -122,9 +140,13 @@ public class FilmeController : ControllerBase
     {
         try
         {
-            Filme filmeDesejado = _ctx.Filmes.FirstOrDefault(alt => alt.FilmeId == id);
+            Filme? filmeDesejado = _ctx.Filmes.FirstOrDefault(alt => alt.FilmeId == id);
 
             filmeDesejado.Avaliacao = filme.Avaliacao;
+            // filmeDesejado.Titulo = filme.Titulo;
+            // filmeDesejado.Duracao = filme.Duracao;
+            // filmeDesejado.AnoLancamento = filme.AnoLancamento;
+            filmeDesejado.EmCartaz = filme.EmCartaz;
             _ctx.SaveChanges();
             return Ok(filmeDesejado);
         }
@@ -133,25 +155,6 @@ public class FilmeController : ControllerBase
             return BadRequest(e.Message);
         }   
     }
-
-
-    [HttpPatch]
-    [Route("remover/{id}")]
-    public IActionResult RemoverDeCartaz([FromRoute] int id, Filme filme)
-    {
-        try
-        {
-            Filme filmeDesejado = _ctx.Filmes.FirstOrDefault(alt => alt.FilmeId == id);
-
-            filmeDesejado.EmCartaz = filme.EmCartaz;      
-            _ctx.SaveChanges();
-            return Ok(filmeDesejado);
-        }
-        catch(Exception e)
-        {
-            return BadRequest(e.Message);
-        }       
-    } 
 
     [HttpDelete]
     [Route("deletar/{id}")]

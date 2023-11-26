@@ -1,0 +1,36 @@
+.filter-label{
+    display: inline-block;
+    /* padding: 0 8px 0 0; */
+}
+
+.filter-input{
+    max-width: 4.25rem;
+}
+
+.escolha-label{
+    display: inline-block;
+}
+
+.filter-fields,
+.filter-fieldset{
+    display: flex;
+    align-items: center;
+}
+
+.filter-fieldset{
+    gap: 2rem;
+    padding: 0 0 2rem 0;
+}
+
+.filter-fields{
+    gap: .5rem;
+}
+
+label{
+    padding: 0;
+}
+
+button{
+    margin: 0;
+    padding: 0 16px;
+}

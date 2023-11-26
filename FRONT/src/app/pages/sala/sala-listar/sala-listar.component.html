@@ -2,12 +2,31 @@
     <app-sala-cadastrar (elementoCadastrado)="atualizaSalas($event)"></app-sala-cadastrar>
     <div>
         <h2>Listagem das salas</h2>
+        <p>Escolha somente um filtro, por gentileza</p>
+        <div class="filter-fieldset">
+            <div class="filter-fields">
+                <label for="" class="filter-label">Disponível:</label>
+
+                <label for="disp-choice" class="escolha-label">Sim</label>
+                <input type="radio" name="aa" value="true" id="disp-choice" class="filter-input" [(ngModel)]="byDisponivel">
+                
+                <label for="disp-choice" class="escolha-label">Não</label>
+                <input type="radio" name="aa" value="false" id="disp-choice" class="filter-input" [(ngModel)]="byDisponivel">
+            </div>
+            <div class="filter-fields">
+                <label for="" class="filter-label">Por assentos</label>
+                <input type="number" name="" id="" class="filter-input" [(ngModel)]="byAssentos">
+            </div>
+
+            <button type="submit" (click)="filtraSalas()">Filtrar</button>
+        </div>
         <table>
             <thead>
                 <tr>
                     <td>#</td>
                     <td>N° de assentos</td>
                     <td>Disponível?</td>
+                    <td>Ação</td>
                 </tr>
             </thead>
             <tbody>
@@ -15,6 +34,10 @@
                     <td> {{ sala.salaId }} </td>
                     <td> {{ sala.assentos }} </td>
                     <td> {{ sala.disponivel }} </td>
+                    <td>
+                        <button (click)="alterarSala(sala.salaId)">Ed</button>
+                        <button (click)="excluirSala(sala.salaId)">Ex</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

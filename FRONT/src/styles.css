@@ -39,6 +39,11 @@ button{
     margin-top: 16px;
 }
 
+table, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
 .container{
     margin: 1rem;
 }

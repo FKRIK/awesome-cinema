@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SalaListarComponent {
   salasCadastradas!: Sala[];
+  byDisponivel!: boolean;
+  byAssentos!: number;
 
   constructor(private client: HttpClient){ }
 
@@ -30,5 +32,58 @@ export class SalaListarComponent {
 
   atualizaSalas(dados: Sala){
     this.salasCadastradas.push(dados);
+  }
+
+  filtraSalas(): void{
+    if(this.byDisponivel != null){
+      this.client
+      .get<Sala[]>(`https://localhost:7206/api/sala/listar/${this.byDisponivel}`)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.salasCadastradas = [];
+          this.salasCadastradas = data;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
+    if(this.byAssentos != null){
+      this.client
+      .get<Sala[]>(`https://localhost:7206/api/sala/listar/${this.byAssentos}`)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.salasCadastradas = [];
+          this.salasCadastradas = data;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
+
+    if(this.byAssentos == null && this.byDisponivel == null){
+      this.ngOnInit();
+    }
+  }
+
+  alterarSala(id: any): void{
+
+  }
+
+  excluirSala(id: any): void{
+    this.client
+    .delete<Sala>(`https://localhost:7206/api/sala/deletar/${id}`)
+    .subscribe({
+      next: (data) => {
+        console.log(data);
+        this.ngOnInit();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 }

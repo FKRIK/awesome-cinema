@@ -4,6 +4,8 @@ import { FilmeListarComponent } from './pages/filme/filme-listar/filme-listar.co
 import { FilmeCadastrarComponent } from './pages/filme/filme-cadastrar/filme-cadastrar.component';
 import { SalaListarComponent } from './pages/sala/sala-listar/sala-listar.component';
 import { SalaCadastrarComponent } from './pages/sala/sala-cadastrar/sala-cadastrar.component';
+import { ExibicaoListarComponent } from './pages/exibicao/exibicao-listar/exibicao-listar.component';
+import { ExibicaoCadastrarComponent } from './pages/exibicao/exibicao-cadastrar/exibicao-cadastrar.component';
 
 const routes: Routes = [
   {
@@ -25,6 +27,14 @@ const routes: Routes = [
   {
     path: "pages/salas/cadastrar",
     component: SalaCadastrarComponent
+  },
+  {
+    path: "pages/exibicoes/listar",
+    component: ExibicaoListarComponent
+  },
+  {
+    path: "pages/exibicoes/cadastrar",
+    component: ExibicaoCadastrarComponent
   }
 ];
 

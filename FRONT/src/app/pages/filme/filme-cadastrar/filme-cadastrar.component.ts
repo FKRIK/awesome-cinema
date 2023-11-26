@@ -10,7 +10,7 @@ import { Filme } from '../../../models/filme.model';
 export class FilmeCadastrarComponent {
   titulo: string = "";
   minutos: number = 0;
-  ano: number = 0;
+  ano: string = "";
   nota: number = 0;
   
   constructor(private client: HttpClient) {}
