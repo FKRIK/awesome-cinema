@@ -13,5 +13,7 @@ public class AppDataContext : DbContext
     public DbSet<Filme> Filmes { get; set; }
     public DbSet<Sala> Salas { get; set; }
     public DbSet<Exibicao> Exibicoes { get; set; }
+    public DbSet<Ingresso> Ingressos { get; set; }
+    public DbSet<Cliente> Clientes { get; set; }
 
 }

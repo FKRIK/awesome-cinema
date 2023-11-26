@@ -84,7 +84,7 @@ public class ExibicaoController : ControllerBase
     {
         try
         {
-            Exibicao exibicaoCadastrada = _ctx.Exibicoes.FirstOrDefault(alt => alt.ExibicaoId == id);
+            Exibicao exibicaoCadastrada = _ctx.Exibicoes.FirstOrDefault(alt => alt.FilmeId == id);
        
             _ctx.Exibicoes.Remove(exibicaoCadastrada);
             _ctx.SaveChanges();
